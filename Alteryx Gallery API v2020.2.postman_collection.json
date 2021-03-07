@@ -1,0 +1,2515 @@
+{
+	"info": {
+		"_postman_id": "7900be48-8ab6-45ee-a717-02681c40789b",
+		"name": "Alteryx Gallery API v2020.2",
+		"description": "The Gallery API is made up of 4 APIs: \r\n\r\n* Subscription API: Endpoints for users to interact with subscriptions, workflows, and schedules (jobs).\r\n* User V2 API: Endpoints for users to interact with credentials, input files, and schedules (jobs).\r\n* Admin V1 API: Endpoints for admins to fetch resources from the Admin interface.\r\n* Admin V2 API: Version 2 of the endpoints for admins to fetch resources from the Admin interface.\r\n\r\nLink to [help documentation](https://help.alteryx.com/current/developer-help/gallery-api-overview)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "Subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/workflows/subscription/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workflows",
+								"subscription",
+								""
+							],
+							"query": [
+								{
+									"key": "sortField",
+									"value": "runcount",
+									"description": "The field on which in the results should be sorted. Values: author, copyright, datemadepublic, executionmode, name, owner, runcount, subscriptionid, uploaddate",
+									"disabled": true
+								},
+								{
+									"key": "direction",
+									"value": "desc",
+									"description": "The direction of the sort used with search results. Values: asc, desc",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Only results containing the search text will be returned.",
+									"disabled": true
+								},
+								{
+									"key": "packageType",
+									"value": "2",
+									"description": "The type of workflow to be returned, any of 0 (apps), 1(workflow), 2(macros).",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds workflows in a subscription."
+					},
+					"response": []
+				},
+				{
+					"name": "Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/workflows/{{appId}}/questions/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workflows",
+								"{{appId}}",
+								"questions",
+								""
+							]
+						},
+						"description": "Returns the questions for the given Alteryx Analtytics App."
+					},
+					"response": []
+				},
+				{
+					"name": "Queue Job",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/workflows/{{appId}}/jobs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workflows",
+								"{{appId}}",
+								"jobs",
+								""
+							],
+							"query": [
+								{
+									"key": "values",
+									"value": "{\n  \"questions\": [\n    {\n      \"name\": \"\",\n      \"value\": \"\"\n    }\n  ],\n  \"priority\": \"0\"\n}",
+									"description": "The list of answers to execute the workflow with.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Queue an app execution job. Returns the ID of the job. Use the status request to get the results of the job."
+					},
+					"response": [
+						{
+							"name": "Queue Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/workflows/{{appId}}/jobs/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"workflows",
+										"{{appId}}",
+										"jobs",
+										""
+									],
+									"query": [
+										{
+											"key": "values",
+											"value": "{\n  \"questions\": [\n    {\n      \"name\": \"\",\n      \"value\": \"\"\n    }\n  ],\n  \"priority\": \"0\"\n}",
+											"description": "The list of answers to execute the workflow with.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:58:08 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"5f7ee2b04d07df0065004fe9\",\n    \"appId\": null,\n    \"createDate\": \"2020-10-08T09:58:08.5429067Z\",\n    \"status\": \"Queued\",\n    \"disposition\": \"None\",\n    \"outputs\": [],\n    \"messages\": [],\n    \"priority\": 0,\n    \"workerTag\": \"\"\n}"
+						}
+					]
+				},
+				{
+					"name": "App Jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/workflows/{{appId}}/jobs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"workflows",
+								"{{appId}}",
+								"jobs",
+								""
+							],
+							"query": [
+								{
+									"key": "sortField",
+									"value": "createdate",
+									"description": "The field on which the results should be sorted. Values: createddate, appname",
+									"disabled": true
+								},
+								{
+									"key": "direction",
+									"value": "asc",
+									"description": "The direction of the sort used with search results. Values: asc, desc",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns the jobs for the given Alteryx Analtytics App. Only app workflows can be used."
+					},
+					"response": []
+				},
+				{
+					"name": "Jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/jobs/{{jobId}}/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"{{jobId}}",
+								""
+							],
+							"query": [
+								{
+									"key": "includeMessages",
+									"value": "false",
+									"description": "Whether or not to return messages. True by default. Values: true, false",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns the jobs and its current state."
+					},
+					"response": [
+						{
+							"name": "Jobs - exclude messages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/jobs/{{jobId}}/?includeMessages=false",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"jobs",
+										"{{jobId}}",
+										""
+									],
+									"query": [
+										{
+											"key": "includeMessages",
+											"value": "false",
+											"description": "Whether or not to return messages. True by default. Values: true, false"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:14:56 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"5f7ee4c99b0700006500502d\",\n    \"appId\": null,\n    \"createDate\": \"2020-10-08T10:07:05Z\",\n    \"status\": \"Completed\",\n    \"disposition\": \"Success\",\n    \"outputs\": [],\n    \"messages\": null,\n    \"priority\": 0,\n    \"workerTag\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Output",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/jobs/{{jobId}}/output/{{OutputId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"{{jobId}}",
+								"output",
+								"{{OutputId}}"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "Csv",
+									"description": "The format you want the output in.",
+									"disabled": true
+								},
+								{
+									"key": "attachment",
+									"value": "",
+									"description": "Specify whether or not you want to receive a file.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns output for a given job."
+					},
+					"response": []
+				},
+				{
+					"name": "Package",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/{{appId}}/package/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"{{appId}}",
+								"package",
+								""
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "",
+									"description": "The ID of the version for which you want to retrieve.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns the app that was requested."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for users to interact with subscriptions, workflows, and schedules (jobs).",
+			"auth": {
+				"type": "oauth1",
+				"oauth1": [
+					{
+						"key": "addParamsToHeader",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "consumerSecret",
+						"value": "{{Subscription API Secret}}",
+						"type": "string"
+					},
+					{
+						"key": "consumerKey",
+						"value": "{{Subscription API Key}}",
+						"type": "string"
+					},
+					{
+						"key": "addEmptyParamsToSign",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "signatureMethod",
+						"value": "HMAC-SHA1",
+						"type": "string"
+					},
+					{
+						"key": "version",
+						"value": "1.0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User V2",
+			"item": [
+				{
+					"name": "Credentials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/user/v2/credentials/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"v2",
+								"credentials",
+								""
+							]
+						},
+						"description": "Finds credentials shared directly with users or via a Subscription."
+					},
+					"response": [
+						{
+							"name": "Credentials",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/user/v2/credentials/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"v2",
+										"credentials",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:36:14 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f7eda9018e730a614131287\",\n        \"userName\": \"username\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Queue Job with Credentials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"questions\": [\r\n    {\r\n      \"name\": \"\",\r\n      \"value\": \"\"\r\n    }\r\n  ],\r\n  \"priority\": \"0\",\r\n  \"credentialId\": \"5f7eda9018e730a614131287\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/user/v2/workflows/{{appId}}/jobs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"v2",
+								"workflows",
+								"{{appId}}",
+								"jobs",
+								""
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Queue an app execution job. Returns the ID of the job. Must send **priority** via **values**."
+					},
+					"response": [
+						{
+							"name": "Queue Job with Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"questions\": [\r\n    {\r\n      \"name\": \"\",\r\n      \"value\": \"\"\r\n    }\r\n  ],\r\n  \"priority\": \"0\",\r\n  \"credentialId\": \"5f7eda9018e730a614131287\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/user/v2/workflows/{{appId}}/jobs/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"v2",
+										"workflows",
+										"{{appId}}",
+										"jobs",
+										""
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:39:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"appId\": null,\n    \"createDate\": \"/Date(1602153553754)/\",\n    \"disposition\": \"None\",\n    \"id\": \"5f7eec514d0700006500511a\",\n    \"messages\": [],\n    \"outputs\": [],\n    \"priority\": 0,\n    \"status\": \"Queued\",\n    \"workerTag\": \"\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Added in 2020.2. The new Gallery User V2 API exposes a way to pass workflow credentials. This allows users to start a workflow using a specific credential to which they have access.",
+			"auth": {
+				"type": "oauth1",
+				"oauth1": [
+					{
+						"key": "addParamsToHeader",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "consumerSecret",
+						"value": "{{User API Secret}}",
+						"type": "string"
+					},
+					{
+						"key": "consumerKey",
+						"value": "{{User API Key}}",
+						"type": "string"
+					},
+					{
+						"key": "signatureMethod",
+						"value": "HMAC-SHA1",
+						"type": "string"
+					},
+					{
+						"key": "version",
+						"value": "1.0",
+						"type": "string"
+					},
+					{
+						"key": "addEmptyParamsToSign",
+						"value": false,
+						"type": "boolean"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin V1",
+			"item": [
+				{
+					"name": "Package",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/{{appId}}/package/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"{{appId}}",
+								"package",
+								""
+							]
+						},
+						"description": "This endpoint downloads the workflow as a YXZP file. This is Step 2 in the Migration process via API. See the Migration folder for the additional endpoints."
+					},
+					"response": []
+				},
+				{
+					"name": "Audit Log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/auditlog/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"auditlog",
+								""
+							],
+							"query": [
+								{
+									"key": "entity",
+									"value": "Credential",
+									"description": "Valid values are: AppInfo, Collection, Credential, Subscription, User",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "The page number. Zero-based index.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "The page size.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Server tracks changes to these system entities:\r\n\r\n- AppInfo (Workflow)\r\n- Collection\r\n- Credential\r\n- Subscription\r\n- User"
+					},
+					"response": [
+						{
+							"name": "Audit changes to Credentials (return 10 results)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/auditlog/?entity=Credential&pageSize=10",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"auditlog",
+										""
+									],
+									"query": [
+										{
+											"key": "entity",
+											"value": "Credential",
+											"description": "Valid values are: AppInfo, Collection, Credential, Subscriptiion, User"
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number. Zero-based index.",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "The page size."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:35:23 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f7eda9018e730a614131288\",\n        \"entity\": \"Credential\",\n        \"entityId\": \"5f7eda9018e730a614131287\",\n        \"event\": \"insert\",\n        \"newValues\": \"{\\\"username\\\":\\\"myusername\\\",\\\"passwordId\\\":\\\"5f7fda704d07000065004ee5\\\",\\\"subscriptions\\\":[],\\\"users\\\":[],\\\"appRevisions\\\":[],\\\"id\\\":null}\",\n        \"oldValues\": null,\n        \"timestamp\": \"/Date(1602149008917)/\",\n        \"userId\": \"5f33caba18e730c46845eb15\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Collections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/collections/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"collections",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "The page number.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "Collections per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds Collections in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Collections",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/collections/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"collections",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "The page number.",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "Collections per page.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:37:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f7edaa818e730a6141312a4\",\n        \"apps\": [],\n        \"collectionId\": \"db5d6e13f2934483951643580d45cc10\",\n        \"dateAdded\": \"/Date(1602149032275)/\",\n        \"insights\": [],\n        \"name\": \"Cool Collection\",\n        \"ownerId\": \"5f33caba18e730c46845eb15\",\n        \"schedules\": [],\n        \"subscriptions\": [],\n        \"users\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Insights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/insights/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"insights",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Only results containing the search text will be returned.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds insights in a Gallery."
+					},
+					"response": []
+				},
+				{
+					"name": "Schedules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/schedules/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"schedules",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "The page number. Zero-based index.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "Schedules per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds schedules in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Return 1 schedule",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/schedules/?page=0&pageSize=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"schedules",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number. Zero-based index."
+										},
+										{
+											"key": "pageSize",
+											"value": "1",
+											"description": "Schedules per page."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:38:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"canEdit\": true,\n        \"id\": \"5f7b3aea203b000055002a42\",\n        \"application\": {\n            \"canExecute\": true,\n            \"id\": \"5f74a0f718e73052877d5275\",\n            \"revisionId\": \"5f74a0f7a479000025005336\",\n            \"name\": \"New Workflow3\",\n            \"iconId\": \"default:Alteryx.Server.Engine.AppIcons.AppSquare10.jpg\"\n        },\n        \"owner\": {\n            \"id\": \"5f33cabb18e110c46845eb15\",\n            \"role\": \"Curator\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\",\n            \"email\": \"jdoe@email.com\",\n            \"sortName\": \"John Doe\",\n            \"isActive\": true,\n            \"credentialWorkFlowCount\": 0\n        },\n        \"name\": null,\n        \"comment\": null,\n        \"enabled\": true,\n        \"priority\": 0,\n        \"workerTag\": null,\n        \"status\": null,\n        \"credential\": {\n            \"credentialId\": null,\n            \"username\": null,\n            \"source\": \"None\"\n        },\n        \"creationTime\": \"2020-10-05 16:25:30\",\n        \"lastRunTime\": \"2020-10-08 10:37:43\",\n        \"nextRunTime\": \"2020-10-08 10:38:18\",\n        \"state\": \"Active\",\n        \"runCount\": 1442,\n        \"iteration\": {\n            \"__type\": \"hourly:#Alteryx.Server.Models.ViewModels\",\n            \"startTime\": \"2020-10-05 16:25:18\",\n            \"endTime\": null,\n            \"hours\": 0,\n            \"minutes\": 1\n        },\n        \"frequency\": \"Minutes/Hours: every 1 minutes\",\n        \"timezone\": \"Europe/London\",\n        \"lastError\": null,\n        \"cpuName\": \"::1\",\n        \"lastModifiedId\": \"John Doe\",\n        \"lastModifiedDate\": \"2020-10-05 16:25:30\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Gallery Data Connections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/serverdataconnections/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"serverdataconnections",
+								""
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns data connections created in a private Gallery."
+					},
+					"response": []
+				},
+				{
+					"name": "Subscriptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/subscriptions/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"subscriptions",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "The page number.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "Subscriptions per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds subscriptions in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Subscriptions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/subscriptions/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"subscriptions",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "The page number.",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "Subscriptions per page.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:39:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"503bac167031af11f8f8e478\",\n        \"Active\": true,\n        \"DefaultWorkerTag\": \"\",\n        \"ExpirationDate\": \"2030-08-12\",\n        \"MemberPassesPurchased\": 0,\n        \"MemberPassesUsed\": 0,\n        \"Name\": \"\",\n        \"PrimaryContactInfo\": {\n            \"address\": {\n                \"addressLine1\": null,\n                \"addressLine2\": null,\n                \"city\": null,\n                \"country\": null,\n                \"postalCode\": null,\n                \"state\": null\n            },\n            \"company\": null,\n            \"email\": null,\n            \"name\": null\n        }\n    },\n    {\n        \"id\": \"5f33caba18e220c46845eb12\",\n        \"Active\": true,\n        \"DefaultWorkerTag\": \"\",\n        \"ExpirationDate\": null,\n        \"MemberPassesPurchased\": 0,\n        \"MemberPassesUsed\": 0,\n        \"Name\": \"jdoe\",\n        \"PrimaryContactInfo\": {\n            \"address\": {\n                \"addressLine1\": null,\n                \"addressLine2\": null,\n                \"city\": null,\n                \"country\": null,\n                \"postalCode\": null,\n                \"state\": null\n            },\n            \"company\": null,\n            \"email\": null,\n            \"name\": null\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "System Data Connections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/systemdataconnections/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"systemdataconnections",
+								""
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns system data connections created on the server where Alteryx Server is installed."
+					},
+					"response": []
+				},
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/users/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "The page number.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"description": "Users per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds users in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Return 1 User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/users/?page=0&pageSize=1",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number."
+										},
+										{
+											"key": "pageSize",
+											"value": "1",
+											"description": "Users per page."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:52:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f33caba18e330c46845eb15\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": true,\n        \"canSetWorkerAssignment\": true,\n        \"curator\": true,\n        \"dateAdded\": \"2020-08-12\",\n        \"dateUpdated\": \"2020-10-02\",\n        \"email\": \"jdoe@email.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"subscriptionId\": \"5f33caba18e220c46845eb12\",\n        \"timezone\": \"Europe/London\",\n        \"updateLastLoginDate\": \"2020-10-08\",\n        \"userProfile\": {\n            \"iconId\": \"\",\n            \"picture\": null\n        },\n        \"validated\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Workflows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/workflows/?search=Thro",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"workflows",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Thro",
+									"description": "Only results containing the search text will be returned."
+								},
+								{
+									"key": "sortField",
+									"value": "uploaddate",
+									"description": "The field on which in the results should be sorted.",
+									"disabled": true
+								},
+								{
+									"key": "direction",
+									"value": "asc",
+									"description": "The direction of the sort used with search results.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds workflows in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Query workflow by name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/workflows/?search=New",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"workflows",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "New",
+											"description": "Only results containing the search text will be returned."
+										},
+										{
+											"key": "sortField",
+											"value": "uploaddate",
+											"description": "The field on which in the results should be sorted.",
+											"disabled": true
+										},
+										{
+											"key": "direction",
+											"value": "asc",
+											"description": "The direction of the sort used with search results.",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "",
+											"description": "The index of the first record to return in the result set.",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "The number of records to return.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:31:58 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"fileName\": \"New Workflow3.yxmd\",\n        \"id\": \"5f74a0f718e73055547d5275\",\n        \"isChained\": false,\n        \"metaInfo\": {\n            \"author\": \"\",\n            \"copyright\": \"\",\n            \"description\": \"\",\n            \"name\": \"New Workflow3\",\n            \"noOutputFilesMessage\": \"\",\n            \"outputMessage\": \"\",\n            \"url\": \"\",\n            \"urlText\": \"\"\n        },\n        \"packageType\": 1,\n        \"public\": false,\n        \"runCount\": 3,\n        \"runDisabled\": false,\n        \"subscriptionId\": \"5f33cab118e330c46845eb12\",\n        \"uploadDate\": \"/Date(1601478903378)/\",\n        \"version\": null,\n        \"workerTag\": \"\",\n        \"collections\": [],\n        \"lastRunDate\": \"/Date(1602149494000+0100)/\",\n        \"publishedVersionId\": \"5f74a0f7a239000025005336\",\n        \"publishedVersionNumber\": 1,\n        \"publishedVersionOwner\": {\n            \"active\": true,\n            \"email\": \"jdoe@email.com\",\n            \"firstName\": \"John\",\n            \"id\": \"5f33caba18f711c46855eb15\",\n            \"lastName\": \"Doe\",\n            \"sId\": null,\n            \"subscriptionId\": \"5f33caba18f220c46845eb12\"\n        },\n        \"subscriptionName\": \"jdoe\"\n    },\n    {\n        \"fileName\": \"Throttle.yxmd\",\n        \"id\": \"5f74a83018e4304b88f937e1\",\n        \"isChained\": false,\n        \"metaInfo\": {\n            \"author\": \"\",\n            \"copyright\": \"\",\n            \"description\": \"\",\n            \"name\": \"Throttle\",\n            \"noOutputFilesMessage\": \"\",\n            \"outputMessage\": \"\",\n            \"url\": \"\",\n            \"urlText\": \"\"\n        },\n        \"packageType\": 1,\n        \"public\": false,\n        \"runCount\": 4,\n        \"runDisabled\": false,\n        \"subscriptionId\": \"5f33caba18e730c46845eb12\",\n        \"uploadDate\": \"/Date(1601480752610)/\",\n        \"version\": null,\n        \"workerTag\": \"\",\n        \"collections\": [],\n        \"lastRunDate\": \"/Date(1601480776000+0100)/\",\n        \"publishedVersionId\": \"5f74a830f80b0000ca004aec\",\n        \"publishedVersionNumber\": 1,\n        \"publishedVersionOwner\": {\n            \"active\": true,\n            \"email\": \"jdoe@email.com\",\n            \"firstName\": \"John\",\n            \"id\": \"5f33cdba18e330c46845eb15\",\n            \"lastName\": \"Doe\",\n            \"sId\": null,\n            \"subscriptionId\": \"5f33caba18e730c46845eb12\"\n        },\n        \"subscriptionName\": \"jdoe\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/workflows/jobs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"workflows",
+								"jobs",
+								""
+							],
+							"query": [
+								{
+									"key": "appIds",
+									"value": "",
+									"description": "The ID of the apps for which you want to retrieve metadata in a comma seperated list. Returns all if not specified",
+									"disabled": true
+								},
+								{
+									"key": "includeMessages",
+									"value": "false",
+									"description": "Whether or not to return messages. true by default",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns the last run job and its current state for workflows. This endpoint only returns jobs run via API."
+					},
+					"response": [
+						{
+							"name": "Return Jobs - exclude messages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/workflows/jobs/?includeMessages=false",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"workflows",
+										"jobs",
+										""
+									],
+									"query": [
+										{
+											"key": "appIds",
+											"value": "",
+											"description": "The ID of the apps for which you want to retrieve metadata in a comma seperated list. Returns all if not specified",
+											"disabled": true
+										},
+										{
+											"key": "includeMessages",
+											"value": "false",
+											"description": "Whether or not to return messages. true by default"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:43:00 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"appId\": \"5f74a0f718e73052847d5275\",\n        \"createDate\": \"/Date(1602150145000+0100)/\",\n        \"disposition\": \"Success\",\n        \"id\": \"5f7edf014d07000000004f69\",\n        \"messages\": [],\n        \"outputs\": [],\n        \"priority\": 0,\n        \"status\": \"Completed\",\n        \"workerTag\": null\n    },\n    {\n        \"appId\": \"5f74a83018e7304a88f937e1\",\n        \"createDate\": \"/Date(1601480776000+0100)/\",\n        \"disposition\": \"Success\",\n        \"id\": \"5f74a848f32b0000ca004af4\",\n        \"messages\": [],\n        \"outputs\": [],\n        \"priority\": 0,\n        \"status\": \"Completed\",\n        \"workerTag\": null\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for admins to fetch resources from the Admin interface.",
+			"auth": {
+				"type": "oauth1",
+				"oauth1": [
+					{
+						"key": "consumerSecret",
+						"value": "{{User API Secret}}",
+						"type": "string"
+					},
+					{
+						"key": "consumerKey",
+						"value": "{{User API Key}}",
+						"type": "string"
+					},
+					{
+						"key": "addParamsToHeader",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "addEmptyParamsToSign",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "signatureMethod",
+						"value": "HMAC-SHA1",
+						"type": "string"
+					},
+					{
+						"key": "version",
+						"value": "1.0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin V2",
+			"item": [
+				{
+					"name": "Insights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v2/insights/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v2",
+								"insights",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Only results containing the search text will be returned.",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "",
+									"description": "The index of the first record to return in the result set.",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "The number of records to return.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscriptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v2/subscriptions/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v2",
+								"subscriptions",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "The page number. Zero-based. Must be used with pageSize.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"description": "Subscriptions per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds subscriptions in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Subscriptions - limit 5",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v2/subscriptions/?page=0&pageSize=5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v2",
+										"subscriptions",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number. Zero-based. Must be used with pageSize."
+										},
+										{
+											"key": "pageSize",
+											"value": "5",
+											"description": "Subscriptions per page."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:58:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"503bac182331af11f8f8e478\",\n        \"active\": true,\n        \"defaultWorkerTag\": \"\",\n        \"expirationDate\": \"2026-05-25\",\n        \"name\": \"Andrew Wiggin's Studio\"\n    },\n    {\n        \"id\": \"56abbc942248e504d8cbd888\",\n        \"active\": true,\n        \"defaultWorkerTag\": \"\",\n        \"expirationDate\": \"2025-12-31\",\n        \"name\": \"Valentine Wiggin's Studio\"\n    },\n    {\n        \"id\": \"56ccca1d2718e513b4a6e601\",\n        \"active\": true,\n        \"defaultWorkerTag\": \"\",\n        \"expirationDate\": \"2025-12-31\",\n        \"name\": \"Peter Wiggin's Studio\"\n    },\n    {\n        \"id\": \"56ce129ef718e513b4a6ee01\",\n        \"active\": true,\n        \"defaultWorkerTag\": \"\",\n        \"expirationDate\": \"2025-12-31\",\n        \"name\": \"Bean's Studio\"\n    },\n    {\n        \"id\": \"56eb09b22238e513b4f6f468\",\n        \"active\": true,\n        \"defaultWorkerTag\": \"\",\n        \"expirationDate\": \"2025-12-31\",\n        \"name\": \"Mazer Rackham's Studio\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v2/users/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v2",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "The page number. Zero-based. Must be used with pageSize.",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "5",
+									"description": "Users per page.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Finds users in a Gallery."
+					},
+					"response": [
+						{
+							"name": "Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v2/users/?page=0&pageSize=10",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v2",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number. Zero-based. Must be used with pageSize."
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"description": "Users per page."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 09:45:49 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f33caba18e730c46845eb15\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": true,\n        \"canSetWorkerAssignment\": true,\n        \"dateAdded\": \"2020-08-12\",\n        \"dateUpdated\": \"2020-10-02\",\n        \"email\": \"sfraticelli@alteryx.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"Sophia\",\n        \"lastName\": \"Fraticelli\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"Curator\",\n        \"subscriptionId\": \"5f33caba18e730c46845eb12\",\n        \"timezone\": \"Europe/London\",\n        \"updateLastLoginDate\": \"2020-10-08\",\n        \"userProfile\": {\n            \"iconId\": \"\",\n            \"picture\": null\n        },\n        \"validated\": true\n    }\n]"
+						},
+						{
+							"name": "Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v2/users/?page=0&pageSize=5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v2",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "The page number. Zero-based. Must be used with pageSize."
+										},
+										{
+											"key": "pageSize",
+											"value": "5",
+											"description": "Users per page."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 11:00:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"503bac188231af11f8f8e479\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": true,\n        \"canSetWorkerAssignment\": true,\n        \"dateAdded\": \"2016-05-25\",\n        \"dateUpdated\": \"2020-03-25\",\n        \"email\": \"awiggin@battleschool.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"Andrew\",\n        \"lastName\": \"Wiggin\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"Viewer\",\n        \"subscriptionId\": \"56eb09b22718e513b4a6f468\",\n        \"timezone\": \"America/Denver\",\n        \"updateLastLoginDate\": \"2020-09-10\",\n        \"userProfile\": {\n            \"iconId\": \"\",\n            \"picture\": null\n        },\n        \"validated\": true\n    },\n    {\n        \"id\": \"56abbc942718e523d8cbd88b\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": false,\n        \"canSetWorkerAssignment\": false,\n        \"dateAdded\": \"2016-01-29\",\n        \"dateUpdated\": \"2018-07-31\",\n        \"email\": \"vwiggin@battleschool.com\",\n        \"expirationDate\": \"2026-05-25\",\n        \"firstName\": \"Valentine\",\n        \"lastName\": \"Wiggin\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"Artisan\",\n        \"subscriptionId\": \"56abbc942718e134d8cbd888\",\n        \"timezone\": \"\",\n        \"updateLastLoginDate\": \"2019-03-08\",\n        \"userProfile\": {\n            \"iconId\": null,\n            \"picture\": null\n        },\n        \"validated\": true\n    },\n    {\n        \"id\": \"56ccca1d2718f513b4a6e603\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": false,\n        \"canSetWorkerAssignment\": false,\n        \"dateAdded\": \"2016-02-23\",\n        \"dateUpdated\": \"2020-09-29\",\n        \"email\": \"pwiggin@battleschool.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"Peter\",\n        \"lastName\": \"Wiggin\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"NoAccess\",\n        \"subscriptionId\": \"56ccca1d2238e513b4a6e601\",\n        \"timezone\": \"\",\n        \"updateLastLoginDate\": \"2018-03-08\",\n        \"userProfile\": {\n            \"iconId\": null,\n            \"picture\": null\n        },\n        \"validated\": true\n    },\n    {\n        \"id\": \"56ce12982228e513b4a6ee03\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": false,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": false,\n        \"canSetWorkerAssignment\": false,\n        \"dateAdded\": \"2016-02-24\",\n        \"dateUpdated\": \"2019-04-29\",\n        \"email\": \"bean@battleschool.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"Bean\",\n        \"lastName\": \"None\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"Artisan\",\n        \"subscriptionId\": \"56ce12922718e513b4a6ee01\",\n        \"timezone\": \"\",\n        \"updateLastLoginDate\": \"2018-07-31\",\n        \"userProfile\": {\n            \"iconId\": null,\n            \"picture\": null\n        },\n        \"validated\": true\n    },\n    {\n        \"id\": \"56eb09b22718e550b4a6f46a\",\n        \"accountLocked\": false,\n        \"accountLockedAt\": null,\n        \"active\": true,\n        \"anonymous\": false,\n        \"canSchedule\": true,\n        \"canSetPriority\": false,\n        \"canSetWorkerAssignment\": false,\n        \"dateAdded\": \"2016-03-17\",\n        \"dateUpdated\": \"2020-09-29\",\n        \"email\": \"mrackham@battleschool.com\",\n        \"expirationDate\": null,\n        \"firstName\": \"Mazer\",\n        \"lastName\": \"Rackham\",\n        \"numFailedLogins\": 0,\n        \"pending\": false,\n        \"role\": \"NoAccess\",\n        \"subscriptionId\": \"56eb09b11718e513b4a6f468\",\n        \"timezone\": \"\",\n        \"updateLastLoginDate\": \"2017-07-12\",\n        \"userProfile\": {\n            \"iconId\": null,\n            \"picture\": null\n        },\n        \"validated\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Workflows (all)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v2/workflows/all/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v2",
+								"workflows",
+								"all",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null,
+									"description": "The name of the workflow to filter on.",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2020-01-01",
+									"description": "The starting date to filter on, inclusive.",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2020-12-31",
+									"description": "The ending date to filter on, inclusive.",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": null,
+									"description": "The page number to start. (Zero based)",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": null,
+									"description": "Workflows per page. (Zero means return all)",
+									"disabled": true
+								},
+								{
+									"key": "useEvents",
+									"value": null,
+									"description": "Values: true, false",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Return all workflows, optionally filtered by date."
+					},
+					"response": []
+				}
+			],
+			"description": "Version 2 of the endpoints for admins to fetch resources from the Admin interface.",
+			"auth": {
+				"type": "oauth1",
+				"oauth1": [
+					{
+						"key": "consumerSecret",
+						"value": "{{User API Secret}}",
+						"type": "string"
+					},
+					{
+						"key": "consumerKey",
+						"value": "{{User API Key}}",
+						"type": "string"
+					},
+					{
+						"key": "addParamsToHeader",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "addEmptyParamsToSign",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "signatureMethod",
+						"value": "HMAC-SHA1",
+						"type": "string"
+					},
+					{
+						"key": "version",
+						"value": "1.0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Migration",
+			"item": [
+				{
+					"name": "Ready to Migrate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/workflows/migratable/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"workflows",
+								"migratable",
+								""
+							],
+							"query": [
+								{
+									"key": "subscriptionIds",
+									"value": "5f33caba18e730c46845eb12",
+									"description": "comma seperated list of subscriptions to filter by",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get a list of workflows ready to migrate. Include a comma-separated list of subscriptionIds as a query parameter. Subscription IDs identify a specific studio.\n\nThe return is an array of workflows marked as ready to migrate under the specified subscription (studio). If you do not provide `subscriptionsIds`, the return includes all workflows marked as ready to migrate. The return includes 3 properties: `appId`, the currently published `revisionId`, and the `subscriptionID` the workflow belongs to.\n\nFull help documentation [here](https://help.alteryx.com/current/developer-help/gallery-api-migratable-endpoint)"
+					},
+					"response": [
+						{
+							"name": "Ready to Migrate by Subscription",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/admin/v1/workflows/migratable/?subscriptionIds=5f33caba18e730c35845eb12",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"v1",
+										"workflows",
+										"migratable",
+										""
+									],
+									"query": [
+										{
+											"key": "subscriptionIds",
+											"value": "5f33caba18e730c35845eb12",
+											"description": "comma seperated list of subscriptions to filter by"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "1728000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Oct 2020 10:20:12 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"5f7ee10b18e730a614131306\",\n        \"publishedVersionId\": \"5f7ee10b4d07000065004fb5\",\n        \"subscriptionId\": \"5f33caba18e730c35845eb12\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Publish Workflow",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "name",
+									"value": "Auto uploaded test app",
+									"type": "text"
+								},
+								{
+									"key": "owner",
+									"value": "bfrontz@alteryx.com",
+									"type": "text"
+								},
+								{
+									"key": "validate",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "isPublic",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "sourceId",
+									"value": "",
+									"description": "appId from source (optional)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "workerTag",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "canDownload",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{TargetURL}}/api/admin/v1/workflows/",
+							"host": [
+								"{{TargetURL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"workflows",
+								""
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": "",
+									"description": "The filename of the new workflow.",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "",
+									"description": "The new workflow name.",
+									"disabled": true
+								},
+								{
+									"key": "owner",
+									"value": "",
+									"description": "The owner of the migrated workflow. The email address must exist in the target environment.",
+									"disabled": true
+								},
+								{
+									"key": "validate",
+									"value": "",
+									"description": "Flag to validate the workflow upon migrating to the target environment.",
+									"disabled": true
+								},
+								{
+									"key": "isPublic",
+									"value": "",
+									"description": "Flag to set the workflow to public to show in “My Company’s Gallery” in the target environment.",
+									"disabled": true
+								},
+								{
+									"key": "SourceId",
+									"value": "",
+									"description": "This is the Source environment appId of the to-be-migrated workflow. If a workflow with the same sourceId exists, this replaces that workflow in the target environment. Otherwise, a new workflow will be generated.\n(Send an empty string if you do not wish to specify an appID.)",
+									"disabled": true
+								},
+								{
+									"key": "workerTag",
+									"value": "",
+									"description": "Add a worker tag to the workflow to have a specific worker to run the workflow. \n\n(Send an empty string if you do not wish to specify worker.)",
+									"disabled": true
+								},
+								{
+									"key": "canDownload",
+									"value": "",
+									"description": "Flag to set the workflow as available for download by other users in the target environment.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This endpoint publishes the downloaded workflow to the target environment.\n\nFull help documentation [here](https://help.alteryx.com/current/developer-help/gallery-api-migratable-endpoint)"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Migration Flag",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/admin/v1/workflows/migratable/{{appId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"v1",
+								"workflows",
+								"migratable",
+								"{{appId}}"
+							]
+						},
+						"description": "(Optional) If you want, you can use the `migratable` endpoint to toggle the **This workflow is ready to be migrated** setting on a workflow back to **No** in the source environment after workflow migration in the target environment.\n\nFull help documentation [here](https://help.alteryx.com/current/developer-help/gallery-api-migratable-endpoint)"
+					},
+					"response": []
+				}
+			],
+			"description": "Use the migratable endpoint to migrate workflows across Server environments. You can use this to manage workflow deployments during development and testing phases.\r\n\r\nTo begin, enable workflows for migration on the Workflows page of the Gallery Admin interface. Once you mark workflows for migration, follow these steps to publish them from the source environment into the appropriate subscription (studio) of a target environment.",
+			"auth": {
+				"type": "oauth1",
+				"oauth1": [
+					{
+						"key": "consumerSecret",
+						"value": "{{User API Secret}}",
+						"type": "string"
+					},
+					{
+						"key": "consumerKey",
+						"value": "{{User API Key}}",
+						"type": "string"
+					},
+					{
+						"key": "addParamsToHeader",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "addEmptyParamsToSign",
+						"value": false,
+						"type": "boolean"
+					},
+					{
+						"key": "signatureMethod",
+						"value": "HMAC-SHA1",
+						"type": "string"
+					},
+					{
+						"key": "version",
+						"value": "1.0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
